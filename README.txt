@@ -1,7 +1,8 @@
 Codility tests and In site tests
 
 AbequoExam ==> Onsite exam on Abequo's office (Jackson JSON parser)
-SmallestPositiveNumberNotOcursInACodilityTest ==> Codility warming up exam (88%)
+MangoExam ==> Onsite exam on Mango's office (Arabic to Romanic conversion)
+SmallestPositiveNumberNotOcursInACodilityTest ==> Codility warming up exam (100%)
 SumDistanceCodilityTest ==> Codility exercice
 WholeSquareCodilityTest ==> Codility exercice
 PlaneReservationCodilityTest ==> Codility exercice
@@ -12,7 +13,6 @@ PostgressCodilityTest ==> Codility exercice
 ArrayMinimumDistanceCodilityTest ==> Codility exercice
 GetAllPrimeBetweenNumbersCodilityTest ==> Codility exercice
 QRoundCodilityTest ==> Codility exercice
-
 
 Other solutions/exercices:
 
