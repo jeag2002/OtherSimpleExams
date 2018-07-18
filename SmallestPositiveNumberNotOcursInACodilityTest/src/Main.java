@@ -23,6 +23,18 @@ public class Main {
 	            }    
 	        }
 	        
+	        if (i == 100000) {
+	        	if (!map.containsKey(new Integer(i))){
+	                return i;
+	            }else {
+	            	i = i+1;
+	            	if (!map.containsKey(new Integer(i))){
+		                return i;
+		            }
+	            }
+	        }
+	        
+	        
 	        return i;   
 	   }
 	

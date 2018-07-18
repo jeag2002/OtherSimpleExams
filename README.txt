@@ -9,6 +9,10 @@ WordMachineCodilityTest ==> Codility exercice
 LeaderAfterOneArrayModificationCodilityTest ==> Codility exercice
 LoopOptimizationCodilityTest ==> Codility exercice
 PostgressCodilityTest ==> Codility exercice
+ArrayMinimumDistanceCodilityTest ==> Codility exercice
+GetAllPrimeBetweenNumbersCodilityTest ==> Codility exercice
+QRoundCodilityTest ==> Codility exercice
+
 
 Other solutions/exercices:
 
