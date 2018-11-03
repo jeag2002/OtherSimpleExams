@@ -1,4 +1,4 @@
-Codility tests and In site tests
+Codility tests/In site tests/Hackerrank tests
 
 AbequoExam ==> Onsite exam on Abequo's office (Jackson JSON parser)
 MangoExam ==> Onsite exam on Mango's office (Arabic to Romanic conversion)
@@ -13,6 +13,8 @@ PostgressCodilityTest ==> Codility exercice
 ArrayMinimumDistanceCodilityTest ==> Codility exercice
 GetAllPrimeBetweenNumbersCodilityTest ==> Codility exercice
 QRoundCodilityTest ==> Codility exercice
+NinjaRun2SQLIHackerrankTest ==> Hackerrank exercice
+
 
 Other solutions/exercices:
 
