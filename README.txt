@@ -14,6 +14,8 @@ ArrayMinimumDistanceCodilityTest ==> Codility exercice
 GetAllPrimeBetweenNumbersCodilityTest ==> Codility exercice
 QRoundCodilityTest ==> Codility exercice
 NinjaRun2SQLIHackerrankTest ==> Hackerrank exercice
+NumBucketsCodilityTest => Codility exercice (AWS Dublin First Step)
+MaxDeepPerfectSquareCodilityTest => Codility exercice (AWS Dublin First Step) 
 
 
 Other solutions/exercices:
