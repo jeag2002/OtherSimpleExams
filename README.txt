@@ -1,4 +1,4 @@
-Codility tests/In site tests/Hackerrank tests
+Codility tests/In site tests/Hackerrank tests:
 
 AbequoExam ==> Onsite exam on Abequo's office (Jackson JSON parser)
 MangoExam ==> Onsite exam on Mango's office (Arabic to Romanic conversion)
@@ -17,6 +17,9 @@ NinjaRun2SQLIHackerrankTest ==> Hackerrank exercice
 NumBucketsCodilityTest => Codility exercice (AWS Dublin First Step)
 MaxDeepPerfectSquareCodilityTest => Codility exercice (AWS Dublin First Step) 
 
+MiniExamples:
+
+ForkJoinFactorize => Exercice Test ForkJoin Recursive concurrent engine Java.
 
 Other solutions/exercices:
 
