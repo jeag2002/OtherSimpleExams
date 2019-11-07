@@ -16,6 +16,7 @@ QRoundCodilityTest ==> Codility exercice
 NinjaRun2SQLIHackerrankTest ==> Hackerrank exercice
 NumBucketsCodilityTest => Codility exercice (AWS Dublin First Step)
 MaxDeepPerfectSquareCodilityTest => Codility exercice (AWS Dublin First Step) 
+AflowChallenge => Edreams ship war challenge
 
 MiniExamples:
 
