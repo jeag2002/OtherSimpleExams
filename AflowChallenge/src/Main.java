@@ -14,8 +14,8 @@ public class Main {
 		int x = Integer.parseInt(coords[0]);
 		int y = Integer.parseInt(coords[1]);
 		 
-		boolean isShoot = !enemy.getBattleBoard()[x][y].equalsIgnoreCase("_");
-		if (isShoot) {enemy.getBattleBoard()[x][y]="_";}
+		boolean isShoot = !enemy.getBattleBoard()[y][x].equalsIgnoreCase("_");
+		if (isShoot) {enemy.getBattleBoard()[y][x]="_";}
 		return isShoot;	
 	}
 	
@@ -44,7 +44,7 @@ public class Main {
 		
 		Scanner reader = new Scanner(System.in);
 		
-		System.out.println("Choose number of rows: (X) ");
+		System.out.println("Choose number of rows: (Y) ");
 		
 		int limit_x = 0;
 		int limit_y = 0;
@@ -55,24 +55,24 @@ public class Main {
 		
 		try {
 		
-			limit_x = Integer.parseInt(reader.nextLine());
+			limit_y = Integer.parseInt(reader.nextLine());
 			
-			if (limit_x < 1) {limit_x = size_x;}
-			if (limit_x > size_x) {limit_x = size_x;}
+			if (limit_y < 1) {limit_y = size_x;}
+			if (limit_y > size_x) {limit_y = size_x;}
 		
 		}catch(Exception e) {
-			limit_x = size_x;
+			limit_y = size_x;
 		}
 		
-		System.out.println("Choose number of cols: (Y) ");
+		System.out.println("Choose number of cols: (X) ");
 		
 		try {
-			limit_y = Integer.parseInt(reader.nextLine()); 
-			if (limit_y < 1) {limit_y = size_y;}
-			if (limit_y > size_y) {limit_y = size_y;}
+			limit_x = Integer.parseInt(reader.nextLine()); 
+			if (limit_x < 1) {limit_x = size_y;}
+			if (limit_x > size_y) {limit_x = size_y;}
 			
 		}catch(Exception e) {
-			limit_y = size_y;
+			limit_x = size_y;
 		}
 		
 		
@@ -86,7 +86,7 @@ public class Main {
 				ships_data_p1[i] = Integer.parseInt(numbers[i]);
 				
 				if (ships_data_p1[i] < 1) {ships_data_p1[i] = 1;}
-				if ((ships_data_p1[i] > size_x) || (ships_data_p1[i] > size_y)) {ships_data_p1[i] = 1;}
+				if ((ships_data_p1[i] > limit_x) || (ships_data_p1[i] > limit_y)) {ships_data_p1[i] = 1;}
 				
 			}
 			
@@ -107,7 +107,7 @@ public class Main {
 				ships_data_p2[i] = Integer.parseInt(numbers[i]);
 				
 				if (ships_data_p2[i] < 1) {ships_data_p2[i] = 1;}
-				if ((ships_data_p2[i] > size_x) || (ships_data_p2[i] > size_y)) {ships_data_p2[i] = 1;}
+				if ((ships_data_p2[i] > limit_x) || (ships_data_p2[i] > limit_y)) {ships_data_p2[i] = 1;}
 			}
 			
 			
@@ -119,8 +119,8 @@ public class Main {
 		ArrayList<Integer> ships_1 = new ArrayList<Integer>(Arrays.asList(ships_data_p1));
 		ArrayList<Integer> ships_2 = new ArrayList<Integer>(Arrays.asList(ships_data_p2));
 		
-		Board2 board_P1 = new Board2(limit_x, limit_y, ships_1);
-		Board2 board_P2 = new Board2(limit_x, limit_y, ships_2);
+		Board2 board_P1 = new Board2(limit_y, limit_x, ships_1);
+		Board2 board_P2 = new Board2(limit_y, limit_x, ships_2);
 		
 		
 		Player p1 = new Player("Player1", board_P1);
@@ -146,17 +146,17 @@ public class Main {
 			System.out.print("OWN BOARD P1"); for(int i=0; i<40-"OWN BOARD P1".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P2\n");
 			
 			//print screen PLAYER_1;
-			for(int i=0; i<limit_x; i++ ) {
+			for(int i=0; i<limit_y; i++ ) {
 				
-				for(int j=0; j<limit_y; j++) {
+				for(int j=0; j<limit_x; j++) {
 					System.out.print(p1.getBoard().getBattleBoard()[i][j]);
 				}
 				
-				for(int z=0; z<40-limit_y; z++) {
+				for(int z=0; z<40-limit_x; z++) {
 					System.out.print(" ");
 				}
 				
-				for(int j=0; j<limit_y; j++) {
+				for(int j=0; j<limit_x; j++) {
 					System.out.print(p1.getEnemyBoard().getBattleBoard()[i][j]);
 				}
 				
@@ -172,17 +172,17 @@ public class Main {
 			
 			
 			//print screen PLAYER_2;
-			for(int i=0; i<limit_x; i++ ) {
+			for(int i=0; i<limit_y; i++ ) {
 				
-				for(int j=0; j<limit_y; j++) {
+				for(int j=0; j<limit_x; j++) {
 					System.out.print(p2.getBoard().getBattleBoard()[i][j]);
 				}
 				
-				for(int z=0; z<40-limit_y; z++) {
+				for(int z=0; z<40-limit_x; z++) {
 					System.out.print(" ");
 				}
 				
-				for(int j=0; j<limit_y; j++) {
+				for(int j=0; j<limit_x; j++) {
 					System.out.print(p2.getEnemyBoard().getBattleBoard()[i][j]);
 				}
 				
@@ -224,17 +224,17 @@ public class Main {
 		System.out.print("OWN BOARD P1"); for(int i=0; i<40-"OWN BOARD P1".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P2\n");
 		
 		//print screen PLAYER_1;
-		for(int i=0; i<limit_x; i++ ) {
+		for(int i=0; i<limit_y; i++ ) {
 			
-			for(int j=0; j<limit_y; j++) {
+			for(int j=0; j<limit_x; j++) {
 				System.out.print(p1.getBoard().getBattleBoard()[i][j]);
 			}
 			
-			for(int z=0; z<40-limit_y; z++) {
+			for(int z=0; z<40-limit_x; z++) {
 				System.out.print(" ");
 			}
 			
-			for(int j=0; j<limit_y; j++) {
+			for(int j=0; j<limit_x; j++) {
 				System.out.print(p1.getEnemyBoard().getBattleBoard()[i][j]);
 			}
 			
@@ -250,17 +250,17 @@ public class Main {
 		
 		
 		//print screen PLAYER_2;
-		for(int i=0; i<limit_x; i++ ) {
+		for(int i=0; i<limit_y; i++ ) {
 			
-			for(int j=0; j<limit_y; j++) {
+			for(int j=0; j<limit_x; j++) {
 				System.out.print(p2.getBoard().getBattleBoard()[i][j]);
 			}
 			
-			for(int z=0; z<40-limit_y; z++) {
+			for(int z=0; z<40-limit_x; z++) {
 				System.out.print(" ");
 			}
 			
-			for(int j=0; j<limit_y; j++) {
+			for(int j=0; j<limit_x; j++) {
 				System.out.print(p2.getEnemyBoard().getBattleBoard()[i][j]);
 			}
 			

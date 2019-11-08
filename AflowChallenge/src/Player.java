@@ -45,7 +45,7 @@ public class Player implements PlayerInterface
         try {
         	ArrayList<Integer> enemy = new ArrayList<Integer>();
         	enemy.add(1);
-			enemyBoard = new Board2(enemyBoardX, enemyBoardY, enemy);
+			enemyBoard = new Board2(enemyBoardY, enemyBoardX, enemy);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -64,12 +64,16 @@ public class Player implements PlayerInterface
     //define ships
     public boolean setShips() {
     	
+    	
+    	Random r = new Random();
+		int sizeBoardX = myBoard.getBattleBoard()[0].length;
+		int sizeBoardY = myBoard.getBattleBoard().length;
+    	
+    	
     	for(Integer shipLength: myBoard.getShipsMissing()) {
     		
     		//1-define orientation (1-VERT; 2-HORIZ)
-    		Random r = new Random();
-    		int sizeBoardX = myBoard.getBattleBoard()[0].length;
-    		int sizeBoardY = myBoard.getBattleBoard().length;
+    		
     		
     		boolean DONE = false;
     		
@@ -130,7 +134,7 @@ public class Player implements PlayerInterface
 	    					
 	    				}
 	    				
-	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
+	    				System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
 	    				
 	    				
 	    			}else {
@@ -148,11 +152,11 @@ public class Player implements PlayerInterface
 	    					}
 	    				}
 	    				
-	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
+	    				System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
 	    				
 	    			}
 	    		//out of limits?
-	    		}while((x_final >= sizeBoardX) || (y_final >= sizeBoardY));
+	    		}while((x_final >= sizeBoardY) || (y_final >= sizeBoardX));
 	    		    		
 	    		
 	    		limit++;
@@ -248,8 +252,8 @@ public class Player implements PlayerInterface
 		if (previousShot.equalsIgnoreCase(shoot) && wasOk) {
 			
 			//FOUND
-			if (enemyBoard.getBattleBoard()[shoot_x][shoot_y].equalsIgnoreCase("_")) {
-				enemyBoard.getBattleBoard()[shoot_x][shoot_y] = "@";
+			if (enemyBoard.getBattleBoard()[shoot_y][shoot_x].equalsIgnoreCase("_")) {
+				enemyBoard.getBattleBoard()[shoot_y][shoot_x] = "@";
 				previousRoot.add(shoot_x+","+shoot_y);
 			}
 			
@@ -263,8 +267,8 @@ public class Player implements PlayerInterface
 		    Integer x_e_board = Integer.parseInt(x_y_Point[0]);
 		    Integer y_e_board = Integer.parseInt(x_y_Point[1]);
 		    
-		    if (enemyBoard.getBattleBoard()[x_e_board][y_e_board].equalsIgnoreCase("_")) {
-		    	enemyBoard.getBattleBoard()[x_e_board][y_e_board] = "x";
+		    if (enemyBoard.getBattleBoard()[y_e_board][x_e_board].equalsIgnoreCase("_")) {
+		    	enemyBoard.getBattleBoard()[y_e_board][x_e_board] = "x";
 		    	previousRoot.add(x_e_board+","+y_e_board);
 		    }
 		    

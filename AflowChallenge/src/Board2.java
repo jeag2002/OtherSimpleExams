@@ -9,8 +9,8 @@ public class Board2 {
     
     private ArrayList<String> code;
     
-    private int _length;
-    private int _weight;
+    private int rows; //Y
+    private int cols; //X
    
     public boolean setShipPosition(Integer length, String iStartPoint, String iEndPoint){
     	
@@ -28,11 +28,11 @@ public class Board2 {
     	Integer y_e = Integer.parseInt(x_y_e_Point[1]);
     	
     	
-    	if ((x_s < 0) || (x_s >= _weight)){throw new Exception ("OutOfLimits");}
-    	if ((y_s < 0) || (y_s >= _length)){throw new Exception ("OutOfLimits");}
+    	if ((x_s < 0) || (x_s >= cols)){throw new Exception ("OutOfLimits");}
+    	if ((y_s < 0) || (y_s >= rows)){throw new Exception ("OutOfLimits");}
     	
-    	if ((x_e < 0) || (x_e >= _weight)){throw new Exception ("OutOfLimits");}
-    	if ((y_e < 0) || (y_e >= _length)){throw new Exception ("OutOfLimits");}
+    	if ((x_e < 0) || (x_e >=  cols)){throw new Exception ("OutOfLimits");}
+    	if ((y_e < 0) || (y_e >=  rows)){throw new Exception ("OutOfLimits");}
     	
     	
     	if (x_s > x_e) {throw new Exception("wrong input coordinates");}
@@ -54,8 +54,8 @@ public class Board2 {
     		
     		code.add(shipCode);
     		
-	    	for(int i=x_s; i<=x_e; i++) {
-	    		for(int j=y_s; j<=y_e; j++) {
+	    	for(int i=y_s; i<=y_e; i++) {
+	    		for(int j=x_s; j<=x_e; j++) {
 	    			
 	    			//battleBoard[i][j] = "+";
 	    			battleBoard[i][j] = shipCode;
@@ -77,15 +77,15 @@ public class Board2 {
         return ships;
     }
 
-    public Board2(int lenght, int weigth, List<Integer> shipsMissing ) throws Exception
+    public Board2(int rows, int cols, List<Integer> shipsMissing ) throws Exception
     {
-    	battleBoard = new String[weigth][lenght];
+    	battleBoard = new String[rows][cols];
     	
-    	this._length = lenght;
-    	this._weight = weigth;
+    	this.rows = rows;
+    	this.cols = cols;
     	
-    	for(int i=0; i<_weight; i++) {
-    		for(int j=0; j<_length; j++) {
+    	for(int i=0; i< this.rows; i++) {
+    		for(int j=0; j< this.cols; j++) {
     			battleBoard[i][j] = "_";
     		}
     	}
@@ -95,7 +95,7 @@ public class Board2 {
     	ships = new ArrayList<Integer>(shipsMissing);
     	
     	for(Integer size: ships) {
-    		if ((size < 0) ||  (size > this._length) ||  (size > this._weight)) {shipsMissing.remove(size);}
+    		if ((size < 0) ||  (size > this.cols) ||  (size > this.rows)) {shipsMissing.remove(size);}
     	}
     	
     	if (ships.isEmpty()) {
