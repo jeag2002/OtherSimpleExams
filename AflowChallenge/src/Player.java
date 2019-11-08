@@ -123,10 +123,10 @@ public class Player implements PlayerInterface
 	    				y_final = y_ini;
 	    				
 	    				
-	    				if (x_final < sizeBoardX) {
+	    				if ((x_final < sizeBoardX) && (y_ini < sizeBoardY)) {
 	    					
 	    					for(int x=x_ini; x<x_final; x++) {
-	    						if (!myBoard.getBattleBoard()[x][y_ini].equalsIgnoreCase("_")) {
+	    						if (!myBoard.getBattleBoard()[y_ini][x].equalsIgnoreCase("_")) {
 	    							DONE = true;
 	    							break;
 	    						}
@@ -134,7 +134,7 @@ public class Player implements PlayerInterface
 	    					
 	    				}
 	    				
-	    				System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
+	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
 	    				
 	    				
 	    			}else {
@@ -142,17 +142,17 @@ public class Player implements PlayerInterface
 	    				x_final = x_ini;
 	    				
 	    				
-	    				if (y_final < sizeBoardY) {
+	    				if ((x_ini < sizeBoardX) && (y_final < sizeBoardY)) {
 	    					
 	    					for(int y=y_ini; y<y_final; y++) {
-	    						if (!myBoard.getBattleBoard()[x_ini][y].equalsIgnoreCase("_")) {
+	    						if (!myBoard.getBattleBoard()[y][x_ini].equalsIgnoreCase("_")) {
 	    							DONE = true;
 	    							break;
 	    						}
 	    					}
 	    				}
 	    				
-	    				System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
+	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
 	    				
 	    			}
 	    		//out of limits?
@@ -193,12 +193,12 @@ public class Player implements PlayerInterface
 				FIN = previousRoot.contains(shoot_x+","+shoot_y);
 				
 				if (FIN) {
-					shoot_x += 1;
+					shoot_y += 1;
 					
-					if (shoot_x >= enemyBoardX) {
-						shoot_x = 0;
-						shoot_y += 1;
-						if (shoot_y >= enemyBoardY) {
+					if (shoot_y >= enemyBoardY) {
+						shoot_y = 0;
+						shoot_x += 1;
+						if (shoot_x >= enemyBoardX) {
 							STOP = true;
 						}
 					}
@@ -216,8 +216,8 @@ public class Player implements PlayerInterface
 			shoot = shoot_x+","+shoot_y;
 		}else {
 			
-			if (shoot_y < (enemyBoardY-1)) {
-				shoot_y+=1;
+			if (shoot_x < (enemyBoardX-1)) {
+				shoot_x+=1;
 			}
 				
 			shoot = shoot_x+","+shoot_y;	
