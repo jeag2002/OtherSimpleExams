@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main {
 
-	private static final Integer size_x = 20;
-	private static final Integer size_y = 20;
+	private static final Integer size_x = 40;
+	private static final Integer size_y = 40;
 	
 	
 	private static boolean shootToOtherPlayer(String coordinates, Board2 enemy) throws Exception{
@@ -132,6 +132,8 @@ public class Main {
 		p2.setShips();
 		System.out.println("Ships PLAYER 2 placed");
 		
+		
+		
 		//COMIENZA EL JUEGO!!!!
 		
 		System.out.println("INIT GAME!!!");
@@ -143,7 +145,7 @@ public class Main {
 			
 			System.out.println("PLAYER 1 (" + p1.getName() + ")");
 			
-			System.out.print("OWN BOARD P1"); for(int i=0; i<40-"OWN BOARD P1".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P2\n");
+			System.out.print("OWN BOARD P1"); for(int i=0; i<50-"OWN BOARD P1".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P2\n");
 			
 			//print screen PLAYER_1;
 			for(int i=0; i<limit_y; i++ ) {
@@ -152,7 +154,7 @@ public class Main {
 					System.out.print(p1.getBoard().getBattleBoard()[i][j]);
 				}
 				
-				for(int z=0; z<40-limit_x; z++) {
+				for(int z=0; z<50-limit_x; z++) {
 					System.out.print(" ");
 				}
 				
@@ -168,7 +170,7 @@ public class Main {
 			
 			System.out.println("PLAYER 2 (" + p2.getName() + ")");
 			
-			System.out.print("OWN BOARD P2"); for(int i=0; i<40-"OWN BOARD P2".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P1\n");
+			System.out.print("OWN BOARD P2"); for(int i=0; i<50-"OWN BOARD P2".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P1\n");
 			
 			
 			//print screen PLAYER_2;
@@ -178,7 +180,7 @@ public class Main {
 					System.out.print(p2.getBoard().getBattleBoard()[i][j]);
 				}
 				
-				for(int z=0; z<40-limit_x; z++) {
+				for(int z=0; z<50-limit_x; z++) {
 					System.out.print(" ");
 				}
 				
@@ -221,7 +223,7 @@ public class Main {
 		
 		System.out.println("PLAYER 1 (" + p1.getName() + ")");
 		
-		System.out.print("OWN BOARD P1"); for(int i=0; i<40-"OWN BOARD P1".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P2\n");
+		System.out.print("OWN BOARD P1"); for(int i=0; i<50-"OWN BOARD P1".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P2\n");
 		
 		//print screen PLAYER_1;
 		for(int i=0; i<limit_y; i++ ) {
@@ -230,7 +232,7 @@ public class Main {
 				System.out.print(p1.getBoard().getBattleBoard()[i][j]);
 			}
 			
-			for(int z=0; z<40-limit_x; z++) {
+			for(int z=0; z<50-limit_x; z++) {
 				System.out.print(" ");
 			}
 			
@@ -246,7 +248,7 @@ public class Main {
 		
 		System.out.println("PLAYER 2 (" + p2.getName() + ")");
 		
-		System.out.print("OWN BOARD P2"); for(int i=0; i<40-"OWN BOARD P2".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P1\n");
+		System.out.print("OWN BOARD P2"); for(int i=0; i<50-"OWN BOARD P2".length(); i++) {System.out.print(" ");} System.out.print("REMOTE BOARD P1\n");
 		
 		
 		//print screen PLAYER_2;
@@ -256,7 +258,7 @@ public class Main {
 				System.out.print(p2.getBoard().getBattleBoard()[i][j]);
 			}
 			
-			for(int z=0; z<40-limit_x; z++) {
+			for(int z=0; z<50-limit_x; z++) {
 				System.out.print(" ");
 			}
 			

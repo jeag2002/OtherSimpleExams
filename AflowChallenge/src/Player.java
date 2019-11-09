@@ -84,7 +84,7 @@ public class Player implements PlayerInterface
     		int x_final = 0;
     		int y_final = 0;
     		
-    		orientation = r.nextInt(2);
+    		
     		
 			x_ini = 0;
 			y_ini = 0;
@@ -99,6 +99,9 @@ public class Player implements PlayerInterface
     		
     			
 	    		do {
+	    			
+	    			orientation = r.nextInt(2);
+	    			
 	    			//2-define first point; end point
 	    			if (!DONE) {
 	    				x_ini = r.nextInt(sizeBoardX);
@@ -125,16 +128,20 @@ public class Player implements PlayerInterface
 	    				
 	    				if ((x_final < sizeBoardX) && (y_ini < sizeBoardY)) {
 	    					
-	    					for(int x=x_ini; x<x_final; x++) {
-	    						if (!myBoard.getBattleBoard()[y_ini][x].equalsIgnoreCase("_")) {
-	    							DONE = true;
-	    							break;
-	    						}
+	    					if (shipLength == 1)  {
+	    						DONE = !myBoard.getBattleBoard()[y_ini][x_ini].equalsIgnoreCase("_");
+	    					}else {
+		    					for(int x=x_ini; x<=x_final; x++) {
+		    						if (!myBoard.getBattleBoard()[y_ini][x].equalsIgnoreCase("_")) {
+		    							DONE = true;
+		    							break;
+		    						}
+		    					}
 	    					}
 	    					
 	    				}
 	    				
-	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
+	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION (" + shipLength + ") " + (DONE?"YES":"NO"));
 	    				
 	    				
 	    			}else {
@@ -144,15 +151,20 @@ public class Player implements PlayerInterface
 	    				
 	    				if ((x_ini < sizeBoardX) && (y_final < sizeBoardY)) {
 	    					
-	    					for(int y=y_ini; y<y_final; y++) {
-	    						if (!myBoard.getBattleBoard()[y][x_ini].equalsIgnoreCase("_")) {
-	    							DONE = true;
-	    							break;
-	    						}
+	    					if (shipLength == 1)  {
+	    						DONE = !myBoard.getBattleBoard()[y_ini][x_ini].equalsIgnoreCase("_");
+	    					}else {
+	    					
+		    					for(int y=y_ini; y<=y_final; y++) {
+		    						if (!myBoard.getBattleBoard()[y][x_ini].equalsIgnoreCase("_")) {
+		    							DONE = true;
+		    							break;
+		    						}
+		    					}
 	    					}
 	    				}
 	    				
-	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION " + (DONE?"YES":"NO"));
+	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION (" +shipLength + ") " + (DONE?"YES":"NO"));
 	    				
 	    			}
 	    		//out of limits?
