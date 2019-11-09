@@ -41,7 +41,7 @@ public class Board2 {
     	if (battleBoard != null) {
     	
     		String shipCode = String.valueOf(length);
-    		int value = length + 63;
+    		int value = length + 64;
     		
     		while (code.contains(shipCode)) {
     			shipCode = Character.toString((char)value);
