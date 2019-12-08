@@ -135,13 +135,17 @@ public class Main {
 		
 		
 		//COMIENZA EL JUEGO!!!!
-		
 		System.out.println("INIT GAME!!!");
 		
 		
 		boolean DONE = false;
 		
+		int index = 0;
+		
 		do {
+			
+			System.out.println("\n");
+			System.out.println("*****************   STEP (" + index + ") *******************************************");
 			
 			System.out.println("PLAYER 1 (" + p1.getName() + ")");
 			
@@ -216,10 +220,15 @@ public class Main {
 				Thread.sleep(200);
 			}
 			
+			System.out.println("*****************   STEP (" + index + ") *******************************************");
+			System.out.println("\n");
+			
+			index++;
+			
 		}while(!DONE);
 		
 		
-		System.out.println("******************************************************************");
+		System.out.println("************************* END *****************************************");
 		
 		System.out.println("PLAYER 1 (" + p1.getName() + ")");
 		
@@ -271,7 +280,7 @@ public class Main {
 		
 		System.out.println("\n");
 		
-		System.out.println("******************************************************************");
+		System.out.println("************************* END *****************************************");
 		
 		System.out.println("END GAME!!!!");
 		

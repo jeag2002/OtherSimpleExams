@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -9,6 +11,10 @@ public class Player implements PlayerInterface
 {
 	
 	private static final Integer VERT=0;
+	
+	
+	private enum Strategy{SPIR_STRATEGY,LIN_STRATEGY,PAR_STRATEGY};
+	
 	
 	
     private String name;
@@ -24,11 +30,17 @@ public class Player implements PlayerInterface
     private Integer shoot_y;
     
     
+    
     private boolean findShip;
-    private boolean findOrientation;
+    private boolean findShipPar;
     
     private ArrayList<String> previousRoot;
     
+    private LinkedList<String> nextMovements;
+    
+    private Integer[] spiral;
+    private int indexSpiral;
+    private Strategy strategy;
     
     
 
@@ -41,6 +53,28 @@ public class Player implements PlayerInterface
         
         enemyBoardY = myBoard.getBattleBoard().length;
         enemyBoardX = myBoard.getBattleBoard()[0].length;
+        
+        nextMovements = new LinkedList<String>();
+        findShipPar = false;
+        
+        createReverseSpiral(enemyBoardY,enemyBoardX);
+        
+        Random r = new Random();
+        int i = r.nextInt(3);
+        
+       
+        if (i==0) {
+        	strategy = Strategy.SPIR_STRATEGY;
+        }else if (i==1) {
+        	strategy = Strategy.LIN_STRATEGY;
+        }else {
+        	strategy = Strategy.PAR_STRATEGY;
+        }
+        
+        
+        //strategy = Strategy.PAR_STRATEGY;
+        
+        System.out.println("Strategy player (" + name + ") is " + strategy.toString());
         
         try {
         	ArrayList<Integer> enemy = new ArrayList<Integer>();
@@ -59,6 +93,110 @@ public class Player implements PlayerInterface
         
         
     }
+    
+    
+    //build spiral;
+    void createReverseSpiral(int enemyBoardY, int enemyBoardX ) {
+    	
+    	spiral = new Integer[enemyBoardX * enemyBoardY];
+    	indexSpiral = 0;
+    	
+    	ArrayList<String> places = new ArrayList<String>();
+    	
+    	for(int i=0; i<spiral.length; i++) {spiral[i]=-1;}
+    	
+    	boolean DONE = false;
+    	int index = enemyBoardX* enemyBoardY -1;
+    	
+    	int value = 0;
+    	
+    	int x_inf = 0;
+    	int y_inf = 0;
+    	
+    	int x_sup = enemyBoardX-1;
+    	int y_sup = enemyBoardY-1;
+    	
+    	
+    	
+    	while(!DONE) {
+    	
+    		//->x++
+    		
+    		if (!DONE) {
+	    		for(int i=x_inf; i<=x_sup; i++) {
+	    			
+	    			if (!places.contains(i+","+y_inf)) {
+	    				spiral[index] = i + (y_inf * enemyBoardX);
+	        			index--;
+	        			places.add(i+","+y_inf);
+	    			}
+	    		}
+	    		
+	    		y_inf ++;
+	    		
+    		}
+    		
+    		if (!DONE) {
+    			
+    			for(int i = y_inf; i<=y_sup; i++) {
+    				
+	    			if (!places.contains(x_sup+","+i)) {
+	    				spiral[index] = x_sup + (i*enemyBoardX);
+	        			index--;
+	        			places.add(x_sup+","+ i);
+	    			}
+    				
+    			}
+    			
+    			x_sup --;
+    		}
+    		
+    		//->x--
+    		
+    		if (!DONE) {
+    			
+    			for(int i=x_sup; i>=x_inf; i--) {
+    				
+    				if (!places.contains(i+","+y_sup)) {
+	    				spiral[index] = i + (y_sup * enemyBoardX);
+	        			index--;
+	        			value++;
+	        			places.add(i+","+y_sup);
+	    			}
+    			}
+    			
+    			y_sup --;
+    			
+    		}
+    		
+    		//->y--
+    		
+    		if (!DONE) {
+    			
+    			for(int i=y_sup; i>=y_inf; i--) {
+    				
+    				if (!places.contains(x_inf+","+i)) {
+	    				spiral[index] = x_inf + (i*enemyBoardX);
+	        			index--;
+	        			value++;
+	        			places.add(x_inf+","+i);
+	    			}
+    			}
+    			
+    			x_inf++;
+    		}
+    		
+    		
+    		DONE = !(new ArrayList<Integer>(Arrays.asList(spiral))).contains(-1);
+    		
+    		
+    		
+    	}
+    	
+    	
+    }
+    
+    
     
     
     //define ships
@@ -141,9 +279,6 @@ public class Player implements PlayerInterface
 	    					
 	    				}
 	    				
-	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION (" + shipLength + ") " + (DONE?"YES":"NO"));
-	    				
-	    				
 	    			}else {
 	    				y_final = y_ini + (shipLength-1);
 	    				x_final = x_ini;
@@ -162,10 +297,7 @@ public class Player implements PlayerInterface
 		    						}
 		    					}
 	    					}
-	    				}
-	    				
-	    				//System.out.println("(" + x_ini + "," + y_ini +") (" + x_final + "," + y_final + ") COLLISION (" +shipLength + ") " + (DONE?"YES":"NO"));
-	    				
+	    				}	    				
 	    			}
 	    		//out of limits?
 	    		}while((x_final >= sizeBoardY) || (y_final >= sizeBoardX));
@@ -187,10 +319,133 @@ public class Player implements PlayerInterface
     	return true;
     }
     
+    
+    @Override
+    public String getNextShot() {
+    	
+    	if (strategy.equals(Strategy.SPIR_STRATEGY)) {
+    		return getNextShotSpiral();
+    	}else if (strategy.equals(Strategy.LIN_STRATEGY)){
+    		return getNextShotLin();
+    	}else {
+    		return getNextShotParity();
+    	}
+    	
+    }
+    
+    
+    //process next shot
+    //STRATEGY: RUN PARITY STRATEGY
+    private String getNextShotParity() {
+    	
+    	if (!findShipPar) {
+    		
+    		boolean STOP = false;
+    		
+    		int x=0;
+    		int y=0;
+    		int index = 0;
+    		
+    		do {
+    			
+    			if (previousRoot.contains(x+","+y)) {
+    				x+=2;
+    				if (x >= enemyBoardX) {
+    					
+    					y += 1;
+    					x = index==0? (y%2): (y%2)==0?1:0; //<-- SHAME
+    					
+    					
+    					if (y >= enemyBoardY) {
+    						index = (index == 0?1:0); //<-- SHAME
+    						x = index;
+    						y = 0;
+    					}
+    				}
+    				
+    			}else {
+    				STOP = true;
+    			}
+    			
+    		}while(!STOP);
+    		
+    		shoot_x = x;
+    		shoot_y = y;
+    		
+    		shoot = shoot_x + "," + shoot_y;
+    		
+    	}else {
+    		
+    		if (!nextMovements.isEmpty()) {
+    			shoot = nextMovements.getFirst();
+    			
+    			String coords[] = shoot.split(",");
+    			
+    			shoot_x = Integer.parseInt(coords[0]);
+    			shoot_y = Integer.parseInt(coords[1]);
+    			
+    			
+    			nextMovements.removeFirst();
+    			findShipPar = true;
+    		}else {
+    			findShipPar = false;
+    		}
+    			
+    	}
+    	
+    	return shoot;
+    }
+    
+    
+    
+    //process next shot
+    //STRATEGY: RUN A REVERSE SPIRAL OF MAP FROM CENTER TO THE OUTSIDE.
+    private String getNextShotSpiral() {
+    	
+    	
+    	
+    	if (!findShip) {
+    		
+    		boolean STOP = false;
+    		
+    		while (!STOP) {
+    			
+    			int value = spiral[indexSpiral];
+    			
+    			shoot_y = value / enemyBoardX; // --> num rows
+    			shoot_x = value % enemyBoardX; // --> num cols
+    			
+    			if (previousRoot.contains(shoot_x+","+shoot_y)){
+    				indexSpiral++;
+    			}else {
+    				STOP = true;
+    			}
+    		}
+    		
+    		shoot = shoot_x + "," + shoot_y;
+    		indexSpiral++;
+    		
+    	}else {
+    		
+    		if (shoot_x < (enemyBoardX-1)) {
+				shoot_x+=1;
+			}
+				
+			shoot = shoot_x+","+shoot_y;	
+    		
+    	}
+    	
+    	return shoot;
+    }
+    
+    
+    
 
     //process next shot
-	@Override
-	public String getNextShot() {
+    //STRATEGY: RUNS BY COLUMNS 0->N-1; IF DETECT A PART OF A SHIP GET HORIZONTAL PART ==> OK
+    //CONST: FAILS ONE TURN BECAUSE YOU PRESUPOSE ALWAYS A SHIP IN A HORIZONTAL POSITION.
+    
+	public String getNextShotLin() {
 		
 		if (!findShip) {
 			
@@ -236,11 +491,10 @@ public class Player implements PlayerInterface
 		
 			
 			
-		}
-		
-		
+		}	
 		return shoot;
 	}
+	
 
 	@Override
 	public String getName() {
@@ -261,14 +515,35 @@ public class Player implements PlayerInterface
 	@Override
 	public void wasShotOk(String previousShot, boolean wasOk) {
 		
-		if (previousShot.equalsIgnoreCase(shoot) && wasOk) {
-			
+		//if (previousShot.equalsIgnoreCase(shoot) && wasOk) {
+		if (wasOk) {	
 			//FOUND
 			if (enemyBoard.getBattleBoard()[shoot_y][shoot_x].equalsIgnoreCase("_")) {
 				enemyBoard.getBattleBoard()[shoot_y][shoot_x] = "@";
 				previousRoot.add(shoot_x+","+shoot_y);
 			}
 			
+			
+			if ((!findShipPar) && (strategy.equals(Strategy.PAR_STRATEGY))) {
+				
+				
+				for(int i=0; i<enemyBoardX; i++) {
+				//for(int i=shoot_x+1; i<enemyBoardX; i++) {
+					if (!previousRoot.contains(i+","+shoot_y)) {
+						nextMovements.add(i+","+shoot_y);
+					}
+				}
+				
+				for(int j=0; j<enemyBoardY; j++) {
+				//for(int j=shoot_y+1; j<enemyBoardY; j++) {
+					if (!previousRoot.contains(shoot_x+","+j)) {
+						nextMovements.add(shoot_x+","+j);
+					}
+				}
+			}
+			
+			
+			findShipPar = true;
 			findShip = true;
 			
 		}else {
@@ -283,6 +558,8 @@ public class Player implements PlayerInterface
 		    	enemyBoard.getBattleBoard()[y_e_board][x_e_board] = "x";
 		    	previousRoot.add(x_e_board+","+y_e_board);
 		    }
+		    
+		    if (!findShipPar) {findShipPar=false;}
 		    
 		    findShip = false;
 			
