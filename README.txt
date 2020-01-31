@@ -17,6 +17,7 @@ NinjaRun2SQLIHackerrankTest ==> Hackerrank exercice
 NumBucketsCodilityTest => Codility exercice (AWS Dublin First Step)
 MaxDeepPerfectSquareCodilityTest => Codility exercice (AWS Dublin First Step) 
 AflowChallenge => Edreams ship war challenge
+Conecta4Challenge => Conecta4 challenge (player vs player, player vs ia, ia vs ia)
 
 MiniExamples:
 
