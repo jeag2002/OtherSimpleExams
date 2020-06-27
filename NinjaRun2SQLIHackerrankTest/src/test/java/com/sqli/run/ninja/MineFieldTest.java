@@ -54,7 +54,7 @@ public class MineFieldTest {
     }
 
     @Test
-    public void ninjaCanJumpMines() throws CannotPassException{
+    public void ninjaCanJumpMines(){
         MineField mineField = new MineFieldBuilder().addMines(1).addMines(2).addMines(1).build();
 
         Ninja ninja = new Ninja();
@@ -70,7 +70,7 @@ public class MineFieldTest {
     }
 
     @Test
-    public void ninjaCanSucceed() throws CannotPassException{
+    public void ninjaCanSucceed(){
         MineField mineField = new MineFieldBuilder().addMines(3).addMines(2).build();
 
         Ninja ninja = new Ninja();
@@ -85,7 +85,7 @@ public class MineFieldTest {
     }
 
     @Test(expected = CannotPassException.class)
-    public void ninjaCanJumpThreeMinesAtOneTimeButNoMore() throws CannotPassException{
+    public void ninjaCanJumpThreeMinesAtOneTimeButNoMore(){
         MineField mineField = new MineFieldBuilder().addMines(3).addMines(4).build();
 
         Ninja ninja = new Ninja();
@@ -98,7 +98,7 @@ public class MineFieldTest {
     }
 
     @Test(expected = CannotPassException.class)
-    public void ninjaCannotCrossRivers() throws CannotPassException {
+    public void ninjaCannotCrossRivers() {
         MineField mineField = new MineFieldBuilder().addRiver().addRiver().build();
 
         Ninja ninja = new Ninja();
@@ -107,7 +107,7 @@ public class MineFieldTest {
     }
 
     @Test
-    public void ninjaWhoKnowsSwimmingCanCrossRivers() throws CannotPassException{
+    public void ninjaWhoKnowsSwimmingCanCrossRivers(){
         MineField mineField = new MineFieldBuilder().addRiver().addRiver().build();
 
         Ninja ninja = new Ninja();
