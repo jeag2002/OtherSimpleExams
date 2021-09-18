@@ -22,6 +22,7 @@ Conecta4Challenge => Conecta4 challenge (player vs player, player vs ia, ia vs i
 MiniExamples:
 
 ForkJoinFactorize => Exercice Test ForkJoin Recursive concurrent engine Java.
+DoomFireTest => Fabien Sanglard Doom Fire exercice (not finish) https://fabiensanglard.net/doom_fire_psx/index.html
 
 Other solutions/exercices:
 
