@@ -22,11 +22,15 @@ public class DoomFireWorld {
 	
 	private Random rand;
 	
+	private long initTime; 
+	
 	public DoomFireWorld(int _x, int _y) {
 		x = _x;
 		y = _y;
 		
 		table = new Table(x,y);
+		
+		initTime = System.currentTimeMillis();
 		
 		rand = new Random();
 		
@@ -59,23 +63,23 @@ public class DoomFireWorld {
 				
 				if (y < table.getY() && y >= table.getY()-2) {
 					table.getTable()[y][x] = 1; 
-				} else if (y < table.getY()-2 && y >= table.getY()-6) {
+				} else if (y < table.getY()-2 && y >= table.getY()-8) {
 					table.getTable()[y][x] = 2; 
-				} else if (y < table.getY()-6 && y >= table.getY()-10) {
+				} else if (y < table.getY()-8 && y >= table.getY()-16) {
 					table.getTable()[y][x] = 3; 
-				} else if (y < table.getY()-10 && y >= table.getY()-14) {
+				} else if (y < table.getY()-16 && y >= table.getY()-24) {
 					table.getTable()[y][x] = 4; 
-				} else if (y < table.getY()-14 && y >= table.getY()-18) {
+				} else if (y < table.getY()-24 && y >= table.getY()-32) {
 					table.getTable()[y][x] = 5; 
-				} else if (y < table.getY()-18 && y >= table.getY()-22) {
+				} else if (y < table.getY()-32 && y >= table.getY()-40) {
 					table.getTable()[y][x] = 6; 
-				} else if (y < table.getY()-22 && y >= table.getY()-26) {
+				} else if (y < table.getY()-40 && y >= table.getY()-48) {
 					table.getTable()[y][x] = 7; 
-				} else if (y < table.getY()-26 && y >= table.getY()-30) {
+				} else if (y < table.getY()-48 && y >= table.getY()-56) {
 					table.getTable()[y][x] = 8; 
-				} else if (y < table.getY()-30 && y >= table.getY()-34) {
+				} else if (y < table.getY()-56 && y >= table.getY()-64) {
 					table.getTable()[y][x] = 9;
-				} else if (y < table.getY()-34 && y >= table.getY()-38) {
+				} else if (y < table.getY()-64 && y >= table.getY()-72) {
 					table.getTable()[y][x] = 10;
 				} else {
 					table.getTable()[y][x] = 0;
@@ -94,11 +98,22 @@ public class DoomFireWorld {
 		
 		int randIndx = rand.nextInt(3);
 		
+	    long actTime = System.currentTimeMillis();
 		
+		int y_to = 0;
 		
-		int y_to = _y_from - randIndx +1;
-		int x_to = _x_from - randIndx;
-		//int x_to = _x_from;
+		/*if ((actTime - initTime) < 1500L) {
+			y_to = _y_from - randIndx;
+		} else if (((actTime - initTime) >= 1000L) && ((actTime - initTime) < 2000L)) {
+			y_to = _y_from - randIndx;
+		} else {*/
+			y_to = _y_from - randIndx+2;
+		//}
+	    
+		//int y_to = _y_from - randIndx+2;
+		//int y_to = _y_from - randIndx +1;
+		//int x_to = _x_from - randIndx - 2;
+		int x_to = _x_from;
 		
 		
 		if (((y_to >= 0) && (y_to < table.getY() )) && 

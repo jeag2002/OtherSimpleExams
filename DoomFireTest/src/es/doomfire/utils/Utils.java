@@ -45,18 +45,21 @@ public class Utils {
 
     public static Color invert(Color c) {
         //  TODO : improve
-        int a = c.getAlpha();
+        //int a = c.getAlpha();
         int r = MAX_RGB_VALUE - c.getRed();
         int g = MAX_RGB_VALUE - c.getGreen();
         int b = MAX_RGB_VALUE - c.getBlue();
-
+        
+        return new Color(r,g,b);
+        
         // if the resulting color is to light (e.g. initial color is black, resulting color is white...)
-        if ((r + g + b > 740) || (r + g + b < 20)) {
+        /*if ((r + g + b > 740) || (r + g + b < 20)) {
             // return a standard yellow
             return new Color(MAX_RGB_VALUE, MAX_RGB_VALUE, 40, a);
         } else {
             return new Color(r, g, b, a);
         }
+        */
     }
 
 }

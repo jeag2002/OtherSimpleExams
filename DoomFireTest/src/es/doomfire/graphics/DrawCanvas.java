@@ -2,6 +2,7 @@ package es.doomfire.graphics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 import javax.swing.JPanel;
 
@@ -15,9 +16,6 @@ public class DrawCanvas extends JPanel{
 	
 	private static final int OFFSET_X = 20;
 	private static final int OFFSET_Y = 20;
-	
-	//private static final int RADIUS = 10;
-	
 	
 	public Table getTable() {
 		return table;
@@ -42,6 +40,7 @@ public class DrawCanvas extends JPanel{
 		System.out.println("**********************************");
 	}
 	
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -58,13 +57,16 @@ public class DrawCanvas extends JPanel{
 		//printFireDebug();
 		
 		
+		
 		for(int x=0; x < table.getX(); x++) {
 			for (int y=0; y< table.getY(); y++ ) {
-				//g.setColor(Utils.invert(Utils.ColorByIndex(table.getTable()[y][x])));
-				g.setColor(Utils.ColorByIndex(table.getTable()[y][x]));
 				int x_rect = x * wdOfRow;
 				int y_rect = y * htOfRow;
+				//g.setColor(Utils.invert(Utils.ColorByIndex(table.getTable()[y][x])));
+				g.setColor(Utils.ColorByIndex(table.getTable()[y][x]));
+
 				g.fillRect(x_rect, y_rect, wdOfRow, htOfRow);
+				
 			}
 		}
 		
