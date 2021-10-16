@@ -1,0 +1,6 @@
+https://algo.monster/problems/visible_tree_node
+
+In a binary tree, a node is considered "visible" if no node on the root-to-itself path has a greater value. The root is always "visible" since there are no other nodes between the root and itself. Given a binary tree, count the number of "visible" nodes.
+
+Input:
+

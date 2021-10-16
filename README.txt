@@ -19,6 +19,10 @@ MaxDeepPerfectSquareCodilityTest => Codility exercice (AWS Dublin First Step)
 AflowChallenge => Edreams ship war challenge
 Conecta4Challenge => Conecta4 challenge (player vs player, player vs ia, ia vs ia)
 
+MicrosoftCodilityExam_1 => (Minimum cost of delete subsets of strings with same characters) Codility exercice
+MicrosoftCodilityExam_2 => (Max sum permutation of string on numbers) Codility exercice
+MicrosoftCodilityExam_3 => (Visible nodes of tree) Codility exercice
+
 MiniExamples:
 
 ForkJoinFactorize => Exercice Test ForkJoin Recursive concurrent engine Java.
