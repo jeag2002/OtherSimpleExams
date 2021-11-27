@@ -28,6 +28,8 @@ MiniExamples:
 ForkJoinFactorize => Exercice Test ForkJoin Recursive concurrent engine Java.
 DoomFireTest => Fabien Sanglard Doom Fire exercice (not finish) https://fabiensanglard.net/doom_fire_psx/index.html
 JavaExcelGraph => Generate Line graph excel.
+HtmlToPdf => conversor HTML to pdf
+JavaSnakeIA => ia snake java. 
 
 Other solutions/exercices:
 
