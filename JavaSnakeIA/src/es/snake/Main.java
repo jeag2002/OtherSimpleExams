@@ -5,7 +5,8 @@ import es.snake.utils.Utils;
 
 public class Main {
 	
-	private static final int DEFAULT_X = 4;
+	private static final int DEFAULT_X = 2;
+	private static final int DEFAULT_Y = 2;
 	
 
 	public static void main(String[] args) throws Exception {
@@ -15,12 +16,17 @@ public class Main {
 		int X = 0;
 		int Y = 0;
 		
-		if (args.length >= 1) {
+		if (args.length >= 2) {
 			X =  Utils.StringToInteger(args[0]);
-			if (X < DEFAULT_X) {X = DEFAULT_X; Y = DEFAULT_X;}
-			else { Y = X; }
+			Y =  Utils.StringToInteger(args[1]);
+			if (X < DEFAULT_X) {X = DEFAULT_X;}
+			if (Y < DEFAULT_Y) {Y = DEFAULT_Y;}
 			
-		} else { X = DEFAULT_X; Y = DEFAULT_X; }
+			
+		} else { 
+			X = DEFAULT_X; 
+			Y = DEFAULT_Y; 
+		}
 		
 		System.out.println("[Create SNAKE IA] x::= " + X +  " y::= " + Y );
 		

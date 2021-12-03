@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import es.snake.beans.Table;
+import es.snake.engine.ia.HamiltonianCicle;
 import es.snake.graphics.CGTemplate;
 import es.snake.graphics.DrawCanvas;
 
@@ -24,13 +25,15 @@ public class SnakeWorld {
 	private Table table_grid;
 	private Table screen;
 	
-	private static final int DELAY = 100;
+	private static final int DELAY = 50;
 	
 	private long initTime; 
 	
 	private Random rand;
 	
 	private int position;
+	
+	private int position_apple;
 	
 	private int row_head_snake;
 	private int col_head_snake;
@@ -120,10 +123,12 @@ public class SnakeWorld {
 		int row = pos / x;
 		int col = pos % x;
 		
+		
+		
 		row_head_snake = row;
 		col_head_snake = col;
 		
-		//System.out.println("pos snake position " + pos + " [" + row + "," + col + "]");
+	    //System.out.println("pos snake position " + pos + " [" + row + "," + col + "]");
 		table_grid.getTable()[row][col] = 1;
 		
 	}
@@ -176,12 +181,12 @@ public class SnakeWorld {
 			
 			data = rand.nextInt(cycle.length);
 		
-			int pos = cycle[data];
+			position_apple = cycle[data];
 		
-			row_apple = pos / x;
-			col_apple = pos % x;
+			row_apple = position_apple / x;
+			col_apple = position_apple % x;
 			
-			//data++;
+			data++;
 		
 			res = noValidSituation(row_apple, col_apple);
 			if(!res) {break;}
@@ -215,6 +220,7 @@ public class SnakeWorld {
 	}
 	
 	private void drawPositionApple() {
+		//System.out.println("New pos apple " + position_apple + " [" + row_apple + "," + col_apple + "]" );
 		table_grid.getTable()[row_apple][col_apple] = 2;
 	}
 	

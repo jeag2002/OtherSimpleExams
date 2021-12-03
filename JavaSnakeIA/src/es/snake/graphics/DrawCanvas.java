@@ -58,7 +58,7 @@ public class DrawCanvas extends JPanel{
 	
 		
 		for(int y=0; y < table.getY(); y++) {
-			for (int x=0; x < table.getY(); x++ ) {
+			for (int x=0; x < table.getX(); x++ ) {
 				int x_rect = x * wdOfRow;
 				int y_rect = y * htOfRow;
 				
