@@ -30,6 +30,7 @@ DoomFireTest => Fabien Sanglard Doom Fire exercice (not finish) https://fabiensa
 JavaExcelGraph => Generate Line graph excel.
 HtmlToPdf => conversor HTML to pdf
 JavaSnakeIA => ia snake java. 
+JavaGPUParalellize => Use of aparapi high level parallel java library (based on OpenCL)
 
 Other solutions/exercices:
 
