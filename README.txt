@@ -23,6 +23,7 @@ MicrosoftCodilityExam_2 => (Max sum permutation of string on numbers) Codility e
 MicrosoftCodilityExam_3 => (Visible nodes of tree) Codility exercice
 OrderFilesAndGetPage => Hackerrank exercice (Agile Monkeys)
 MultElementsSublistMinorToK => Hackerrank exercice (Agile Monkeys)
+SherlockAndTheBeast ==> Hackerrank exercice
 
 MiniExamples:
 
